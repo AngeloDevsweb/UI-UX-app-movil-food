@@ -12,7 +12,7 @@ import { productStyle } from "../styles/productStyle";
 import { etiquetas } from "../Apis/etiquetas";
 import { productos } from "../Apis/productos";
 
-export function Product() {
+export function Product(props) {
   const renderItem = ({ item }) => (
     <TouchableOpacity style={productStyle.boxTag}>
       <Text style={productStyle.textTag}>{item.title}</Text>
@@ -22,7 +22,7 @@ export function Product() {
   const productList = ({ item }) => {
     //console.log(item);
     return (
-      <TouchableOpacity>
+      <TouchableOpacity onPress={()=>props.navigation.navigate('Detail', {detail:item})}>
       <View style={productStyle.tarjeta}>
         <Image source={{ uri: item.imagen }} style={productStyle.imagen} />
         <View style={productStyle.contenido}>
@@ -49,6 +49,7 @@ export function Product() {
           keyExtractor={(item) => item.id}
           renderItem={renderItem}
           horizontal
+          showsHorizontalScrollIndicator={false}
         />
       </View>
 
